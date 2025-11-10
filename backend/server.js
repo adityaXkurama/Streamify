@@ -1,9 +1,10 @@
 import express from 'express';
-import "dotenv/config";
-import authRoutes from './routes/auth.route.js';
-import userRoutes from './routes/user.routes.js';
-import chatRoutes from './routes/chat.route.js';
-import { connectDB } from './lib/db.js';
+import dotenv from 'dotenv';
+
+import authRoutes from './src/routes/auth.route.js';
+import userRoutes from './src/routes/user.routes.js';
+import chatRoutes from './src/routes/chat.route.js';
+import { connectDB } from './src/lib/db.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 
@@ -32,9 +33,9 @@ app.get("/",(req,res)=>{
 });
 
 
-connectDB()
-// app.listen(PORT,()=>{
-//     console.log(`Server is running on port http://localhost:${process.env.PORT}`);
-// });
+app.listen(PORT,()=>{
+    console.log(`Server is running on port http://localhost:${process.env.PORT}`);
+    connectDB()
+});
 
 export default app;
