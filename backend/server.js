@@ -14,7 +14,7 @@ dotenv.config({
 
 const app = express();
 
-const  PORT = process.env.PORT;
+const  PORT = process.env.PORT || 5000;
 
 
 app.use(cors({
@@ -24,13 +24,14 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser())
 
-app.use("/api/auth",authRoutes)
-app.use("/api/users",userRoutes)
-app.use("/api/chat",chatRoutes)
 
 app.get("/",(req,res)=>{
     res.send("Welcome to Streamify Backend");
 });
+
+app.use("/api/auth",authRoutes)
+app.use("/api/users",userRoutes)
+app.use("/api/chat",chatRoutes)
 
 
 app.listen(PORT,()=>{
